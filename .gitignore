@@ -34,3 +34,4 @@ coverage/
 # Additional
 error.log
 combined.log
+.gitignore
