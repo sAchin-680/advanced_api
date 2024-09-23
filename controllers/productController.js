@@ -117,22 +117,26 @@ const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 
+    // Check if product exists
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
     }
 
-    // Store product in Redis cache for future requests
+    // Cache the product in Redis for future requests
     await redisClient.setEx(
       `product:${product._id}`,
-      3600,
+      3600, // 1 hour expiry
       JSON.stringify(product)
-    ); // Cache for 1 hour
+    );
 
-    res.json(product);
+    // Return the product
+    res.status(200).json(product);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    // Handle unexpected server errors
+    res.status(500).json({ message: 'Server error' });
   }
 };
+
 module.exports = {
   createProduct,
   getProducts,
