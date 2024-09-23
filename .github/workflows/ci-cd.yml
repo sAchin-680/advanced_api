@@ -23,7 +23,8 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Deploy to Heroku
-        run: git push heroku main
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      - name: Add Render Remote
+        run: git remote add render https://github.com/sAchin-680/advanced_api.git
+
+      - name: Deploy to Render
+        run: git push render main
