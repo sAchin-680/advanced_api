@@ -179,6 +179,6 @@ Contributions are always welcome! Please follow the steps below to contribute:
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the MIT License. For more information, see the [LICENSE](LICENSE) file.
 
 Feel free to reach out with any questions or feedback. Happy coding!
