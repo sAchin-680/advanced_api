@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const { ApolloServer } = require('apollo-server-express');
+
 const typeDefs = require('./graphql/schema');
 const resolvers = require('./graphql/resolvers');
 const rateLimiter = require('./middlewares/rateLimiter');
@@ -9,6 +10,7 @@ const csrf = require('csurf');
 const cookieParser = require('cookie-parser');
 const setupSwagger = require('./swagger');
 const compression = require('compression');
+const { getProductById } = require('./controllers/productController');
 
 dotenv.config();
 
@@ -19,6 +21,7 @@ app.use(morgan('dev'));
 app.use(rateLimiter);
 app.use(compression());
 const csrfProtection = csrf({ cookie: true });
+app.get('/api/v1/products/:id', getProductById);
 
 app.use((req, res, next) => {
   if (req.path === '/graphql') {
