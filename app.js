@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser');
 const setupSwagger = require('./swagger');
 const compression = require('compression');
 const { getProductById } = require('./controllers/productController');
-
+const { getHerokuApps } = require('./herokuApi');
 dotenv.config();
 
 const app = express();
@@ -34,6 +34,18 @@ const server = new ApolloServer({ typeDefs, resolvers });
 server.start().then(() => {
   server.applyMiddleware({ app });
 });
+
+const main = async () => {
+  try {
+    const apps = await getHerokuApps(); // Call the function
+    console.log(apps); // Log the response data
+  } catch (error) {
+    console.error('Failed to get Heroku apps:', error);
+  }
+};
+
+// Run the main function
+main();
 
 setupSwagger(app);
 

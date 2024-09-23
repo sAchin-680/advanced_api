@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "apollo-server-express": "^3.13.0",
+    "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
@@ -24,6 +25,7 @@
     "express-validator": "^7.2.0",
     "graphql": "^16.9.0",
     "helmet": "^7.1.0",
+    "heroku": "^8.7.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.3",
     "morgan": "^1.10.0",
