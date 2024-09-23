@@ -111,28 +111,20 @@ const deleteProduct = async (req, res) => {
 };
 
 // @desc    Get product by ID
-// @route   GET /api/products/:id
+// @route   GET /api/v1/products/:id
 // @access  Public
 const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
 
-    // Check if product exists
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
     }
 
-    // Cache the product in Redis for future requests
-    await redisClient.setEx(
-      `product:${product._id}`,
-      3600, // 1 hour expiry
-      JSON.stringify(product)
-    );
-
-    // Return the product
+    // If product is found, return it
     res.status(200).json(product);
   } catch (error) {
-    // Handle unexpected server errors
+    // Catch server errors and return a 500 response
     res.status(500).json({ message: 'Server error' });
   }
 };
