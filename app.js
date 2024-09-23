@@ -8,6 +8,7 @@ const rateLimiter = require('./middlewares/rateLimiter');
 const csrf = require('csurf');
 const cookieParser = require('cookie-parser');
 const setupSwagger = require('./swagger');
+const compression = require('compression');
 
 dotenv.config();
 
@@ -16,7 +17,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(rateLimiter);
-
+app.use(compression());
 const csrfProtection = csrf({ cookie: true });
 
 app.use((req, res, next) => {
