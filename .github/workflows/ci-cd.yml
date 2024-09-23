@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Add Render Remote
-        run: git remote add render https://github.com/sAchin-680/advanced_api.gits
+        run: git remote add render https://github.com/sAchin-680/advanced_api.git
 
       - name: Deploy to Render
         run: git push render main
